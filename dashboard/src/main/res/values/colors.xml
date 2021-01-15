@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="amber_primary">#00D97B</color>
+    <color name="amber_light">#00D97B</color>
+    <color name="amber_dark">#c67100</color>
+    <color name="green">#00D97B</color>
+    <color name="grayish_blue">#A0C1E3</color>
+    <color name="light_blue">#52A2C7</color>
+    <color name="blue">#185DFA</color>
+    <color name="klein_blue">#0021AF</color>
+    <color name="gray">#f2f4f4</color>
+    <color name="gray_dark">#b2babb</color>
+</resources>
