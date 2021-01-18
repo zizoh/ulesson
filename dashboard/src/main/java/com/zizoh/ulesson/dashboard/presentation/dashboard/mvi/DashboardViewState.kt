@@ -1,6 +1,6 @@
 package com.zizoh.ulesson.dashboard.presentation.dashboard.mvi
 
-import com.zizoh.ulesson.dashboard.presentation.models.LessonModel
+import com.zizoh.ulesson.dashboard.presentation.models.WatchedTopicModel
 import com.zizoh.ulesson.dashboard.presentation.models.SubjectModel
 import com.zizoh.ulesson.presentation.mvi.ViewState
 
@@ -18,8 +18,10 @@ sealed class DashboardViewState : ViewState {
     }
 
     sealed class RecentTopicsViewState : DashboardViewState() {
-        data class LessRecentTopicsLoaded(val lessons: List<LessonModel>) : RecentTopicsViewState()
-        data class MoreRecentTopicsLoaded(val lessons: List<LessonModel>) : RecentTopicsViewState()
+        object LoadingMostRecentWatchedTopics : RecentTopicsViewState()
+        data class MostRecentWatchedTopicsLoaded(val lessons: List<WatchedTopicModel>) : RecentTopicsViewState()
         object RecentTopicsEmpty : RecentTopicsViewState()
+        object LoadingAllWatchedTopics : RecentTopicsViewState()
+        data class AllWatchedTopicsLoaded(val lessons: List<WatchedTopicModel>) : RecentTopicsViewState()
     }
 }

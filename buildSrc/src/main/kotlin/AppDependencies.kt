@@ -85,8 +85,8 @@ object Dependencies {
 
     object Others {
         object Version {
-            const val jodaTime: String = "2.9.4.2"
-            const val jodaTimeAndroid: String = "2.9.9.4"
+            const val jodaTime: String = "2.9.9"
+            const val jodaTimeAndroid: String = "2.9.9"
         }
 
         const val jodaTimeAndroid: String = "net.danlew:android.joda:${Version.jodaTimeAndroid}"

@@ -1,7 +1,7 @@
 package com.zizoh.ulesson.dashboard.presentation.dashboard.mvi
 
-import com.zizoh.ulesson.domain.models.Lesson
 import com.zizoh.ulesson.domain.models.Subject
+import com.zizoh.ulesson.domain.models.WatchedTopic
 import com.zizoh.ulesson.presentation.mvi.ViewResult
 
 /**
@@ -16,9 +16,11 @@ sealed class DashboardViewResult : ViewResult {
         data class Success(val subjects: List<Subject>) : SubjectsResult()
     }
 
-    sealed class RecentTopicsResult : DashboardViewResult() {
-        object Empty : RecentTopicsResult()
-        data class LessTopicsLoaded(val lessons: List<Lesson>) : RecentTopicsResult()
-        data class MoreTopicsLoaded(val lessons: List<Lesson>) : RecentTopicsResult()
+    sealed class WatchedTopicsResult : DashboardViewResult() {
+        object LoadingMostRecentWatchedTopics: WatchedTopicsResult()
+        object Empty : WatchedTopicsResult()
+        data class MostRecentWatchedTopicsLoaded(val lessons: List<WatchedTopic>) : WatchedTopicsResult()
+        object LoadingAllWatchedTopics: WatchedTopicsResult()
+        data class AllWatchedTopicsLoaded(val lessons: List<WatchedTopic>) : WatchedTopicsResult()
     }
 }

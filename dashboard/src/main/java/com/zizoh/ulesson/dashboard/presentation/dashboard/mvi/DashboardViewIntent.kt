@@ -7,6 +7,7 @@ import com.zizoh.ulesson.presentation.mvi.ViewIntent
  */
 
 sealed class DashboardViewIntent : ViewIntent
+object LoadData : DashboardViewIntent()
 sealed class SubjectViewIntent : DashboardViewIntent() {
     object LoadSubjects : SubjectViewIntent()
 }

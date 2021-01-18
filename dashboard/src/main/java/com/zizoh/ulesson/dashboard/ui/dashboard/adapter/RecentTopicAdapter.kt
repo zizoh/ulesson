@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.zizoh.ulesson.core.ext.inflate
 import com.zizoh.ulesson.dashboard.R
 import com.zizoh.ulesson.dashboard.databinding.ItemLessonBinding
-import com.zizoh.ulesson.dashboard.presentation.models.LessonModel
+import com.zizoh.ulesson.dashboard.presentation.models.WatchedTopicModel
 import com.zizoh.ulesson.dashboard.ui.dashboard.adapter.resourceprovider.recenttopic.RecentTopicResourceProviderFactory
 import javax.inject.Inject
 
@@ -18,7 +18,7 @@ import javax.inject.Inject
 typealias RecentTopicClickListener = (Int) -> Unit
 
 class RecentTopicAdapter @Inject constructor(
-) : ListAdapter<LessonModel, RecentTopicAdapter.RecentTopicViewHolder>(diffUtilCallback) {
+) : ListAdapter<WatchedTopicModel, RecentTopicAdapter.RecentTopicViewHolder>(diffUtilCallback) {
 
     var clickListener: RecentTopicClickListener? = null
 
@@ -34,7 +34,7 @@ class RecentTopicAdapter @Inject constructor(
         private val binding: ItemLessonBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(lesson: LessonModel, clickListener: RecentTopicClickListener?) {
+        fun bind(lesson: WatchedTopicModel, clickListener: RecentTopicClickListener?) {
             val resourceFactory = RecentTopicResourceProviderFactory(lesson, binding.root.context)
             val provider = resourceFactory.getProvider()
             binding.ivPlayButton.setImageDrawable(provider.getPlayButtonDrawable())
@@ -47,18 +47,18 @@ class RecentTopicAdapter @Inject constructor(
     }
 
     companion object {
-        val diffUtilCallback: DiffUtil.ItemCallback<LessonModel>
-            get() = object : DiffUtil.ItemCallback<LessonModel>() {
+        val diffUtilCallback: DiffUtil.ItemCallback<WatchedTopicModel>
+            get() = object : DiffUtil.ItemCallback<WatchedTopicModel>() {
                 override fun areItemsTheSame(
-                    oldItem: LessonModel,
-                    newItem: LessonModel
+                    oldItem: WatchedTopicModel,
+                    newItem: WatchedTopicModel
                 ): Boolean {
                     return oldItem.id == newItem.id
                 }
 
                 override fun areContentsTheSame(
-                    oldItem: LessonModel,
-                    newItem: LessonModel
+                    oldItem: WatchedTopicModel,
+                    newItem: WatchedTopicModel
                 ): Boolean {
                     return oldItem == newItem
                 }

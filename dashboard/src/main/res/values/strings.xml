@@ -10,4 +10,6 @@
     <string name="no_subjects_title">No Subjects</string>
     <string name="no_subjects_caption">Subjects you add will appear here.</string>
     <string name="an_error_occurred">An error occured</string>
+    <string name="no_recently_watched_topics_title">No Recently Watched Topics</string>
+    <string name="no_recently_watched_topics_caption">Topics you watch will show here.</string>
 </resources>

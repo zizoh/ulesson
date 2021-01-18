@@ -76,7 +76,6 @@ dependencies {
     implementAll(View.components)
     implementation(DI.hiltAndroid)
     implementation(DI.hiltViewModel)
-    implementation(Others.jodaTimeAndroid)
     implementation(Network.moshi)
 
     AndroidX.run {

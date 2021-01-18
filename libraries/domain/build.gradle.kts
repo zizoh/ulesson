@@ -6,8 +6,6 @@ plugins {
 }
 
 dependencies {
-    implementation(Others.jodaTimeAndroid)
-
     testImplementation(Test.junit)
     testImplementation(Test.truth)
     testImplementation(Test.coroutinesTest)

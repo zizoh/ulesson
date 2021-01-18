@@ -2,11 +2,11 @@ package com.zizoh.ulesson.dashboard.presentation.dashboard.mvi
 
 import com.zizoh.ulesson.dashboard.presentation.DashboardIntentProcessor
 import com.zizoh.ulesson.dashboard.presentation.dashboard.mvi.DashboardViewResult.SubjectsResult
-import com.zizoh.ulesson.domain.usecase.base.GetSubjects
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onStart
+import com.zizoh.ulesson.dashboard.presentation.dashboard.mvi.DashboardViewResult.WatchedTopicsResult
+import com.zizoh.ulesson.domain.usecase.GetAllWatchedTopics
+import com.zizoh.ulesson.domain.usecase.GetMostRecentWatchedTopics
+import com.zizoh.ulesson.domain.usecase.GetSubjects
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 /**
@@ -14,15 +14,22 @@ import javax.inject.Inject
  */
 
 class DashboardViewIntentProcessor @Inject constructor(
-    private val getSubjects: GetSubjects
+    private val getSubjects: GetSubjects,
+    private val getMostRecentWatchedTopics: GetMostRecentWatchedTopics,
+    private val getAllWatchedTopics: GetAllWatchedTopics
 ) : DashboardIntentProcessor {
 
     override fun intentToResult(viewIntent: DashboardViewIntent): Flow<DashboardViewResult> {
         return when (viewIntent) {
+            LoadData -> getData()
             SubjectViewIntent.LoadSubjects -> loadSubjects()
-            RecentTopicsViewIntent.LoadMostRecentTopics -> TODO()
+            RecentTopicsViewIntent.LoadMostRecentTopics -> loadMostRecentWatchedTopics()
             RecentTopicsViewIntent.LoadAllRecentTopics -> TODO()
         }
+    }
+
+    private fun getData(): Flow<DashboardViewResult> {
+        return merge(loadSubjects(), loadMostRecentWatchedTopics())
     }
 
     private fun loadSubjects(): Flow<DashboardViewResult> {
@@ -38,6 +45,21 @@ class DashboardViewIntentProcessor @Inject constructor(
             }.catch { error ->
                 error.printStackTrace()
                 emit(SubjectsResult.Error(error))
+            }
+    }
+
+    private fun loadMostRecentWatchedTopics(): Flow<DashboardViewResult> {
+        return getMostRecentWatchedTopics()
+            .map { watchedTopics ->
+                if (watchedTopics.isNotEmpty()) {
+                    WatchedTopicsResult.MostRecentWatchedTopicsLoaded(watchedTopics)
+                } else {
+                    WatchedTopicsResult.Empty
+                }
+            }.onStart {
+                emit(WatchedTopicsResult.LoadingMostRecentWatchedTopics)
+            }.catch { error ->
+                error.printStackTrace()
             }
     }
 }

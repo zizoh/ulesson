@@ -1,7 +1,7 @@
 package com.zizoh.ulesson.dashboard.presentation.dashboard.mvi
 
-import com.zizoh.ulesson.dashboard.presentation.DashboardStateMachine
 import com.zizoh.ulesson.dashboard.presentation.DashboardIntentProcessor
+import com.zizoh.ulesson.dashboard.presentation.DashboardStateMachine
 import com.zizoh.ulesson.dashboard.presentation.DashboardStateReducer
 import javax.inject.Inject
 
@@ -15,6 +15,6 @@ class DashboardViewStateMachine @Inject constructor(
 ) : DashboardStateMachine(
     intentProcessor,
     reducer,
-    SubjectViewIntent.LoadSubjects,
+    LoadData,
     DashboardViewState.Idle
 )

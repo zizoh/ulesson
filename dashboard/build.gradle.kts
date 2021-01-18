@@ -63,7 +63,7 @@ dependencies {
     implementation(FlowBinding.android)
     implementation(DI.hiltAndroid)
     implementation(DI.hiltViewModel)
-    implementation(Others.jodaTimeAndroid)
+//    implementation(Others.jodaTimeAndroid)
     implementAll(AndroidX.components)
     implementAll(Coroutines.components)
 

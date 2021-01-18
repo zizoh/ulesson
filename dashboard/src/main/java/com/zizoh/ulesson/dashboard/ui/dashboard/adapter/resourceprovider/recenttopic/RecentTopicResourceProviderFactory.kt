@@ -1,7 +1,7 @@
 package com.zizoh.ulesson.dashboard.ui.dashboard.adapter.resourceprovider.recenttopic
 
 import android.content.Context
-import com.zizoh.ulesson.dashboard.presentation.models.LessonModel
+import com.zizoh.ulesson.dashboard.presentation.models.WatchedTopicModel
 import com.zizoh.ulesson.dashboard.ui.dashboard.adapter.resourceprovider.exception.NoResourceException
 import com.zizoh.ulesson.dashboard.ui.dashboard.adapter.resourceprovider.subject.SubjectName
 
@@ -10,7 +10,7 @@ import com.zizoh.ulesson.dashboard.ui.dashboard.adapter.resourceprovider.subject
  */
 
 class RecentTopicResourceProviderFactory(
-    private val lesson: LessonModel,
+    private val lesson: WatchedTopicModel,
     private val context: Context
 ) {
     fun getProvider(): RecentTopicResourceProvider {
