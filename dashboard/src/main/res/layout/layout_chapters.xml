@@ -3,23 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".views.dashboard.RecentTopicsView">
-
-    <TextView
-        android:id="@+id/tv_watched_topics_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:fontFamily="@font/mulish_variable_font_wght"
-        android:text="@string/recent_watched_topics"
-        android:textColor="@color/text_color_dark"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:layout_height="match_parent"
+    tools:context=".views.chapter.ChaptersView">
 
     <ProgressBar
-        android:id="@+id/recent_topics_progress_bar"
+        android:id="@+id/chapters_progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -27,10 +15,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_watched_topics_title" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.zizoh.ulesson.dashboard.views.EmptyStateView
-        android:id="@+id/recent_topics_error_state"
+        android:id="@+id/chapters_error_state"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:visibility="gone"
@@ -39,22 +27,39 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_watched_topics_title" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.05" />
+
+    <TextView
+        android:id="@+id/tv_chapter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:drawableStart="@drawable/back_button"
+        android:drawablePadding="16dp"
+        android:fontFamily="@font/mulish_variable_font_wght"
+        android:textColor="@color/text_color_dark"
+        android:textSize="24sp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Biology"
+        tools:visibility="visible" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_recent_topics"
-        android:layout_width="match_parent"
+        android:id="@+id/rv_chapters"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:clipToPadding="false"
+        android:layout_marginTop="8dp"
         android:orientation="vertical"
-        android:paddingTop="16dp"
-        android:paddingBottom="56dp"
         android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/tv_watched_topics_title"
-        app:spanCount="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_chapter"
         tools:itemCount="5"
-        tools:listitem="@layout/item_watched_topic"
+        tools:listitem="@layout/item_chapter"
         tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

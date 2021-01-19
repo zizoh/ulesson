@@ -8,5 +8,6 @@ data class ChapterEntity(
     val id: Int,
     val name: String,
     val lessons: List<LessonEntity>,
-    var subjectId: Int
+    var subjectId: Int,
+    var subjectName: String
 )

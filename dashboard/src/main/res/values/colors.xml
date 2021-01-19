@@ -11,4 +11,5 @@
     <color name="subject_english">#506AAC</color>
     <color name="subject_mathematics">#EA7052</color>
     <color name="subject_physics">#7B7FDA</color>
+    <color name="canvas_color">#E5E5E5</color>
 </resources>

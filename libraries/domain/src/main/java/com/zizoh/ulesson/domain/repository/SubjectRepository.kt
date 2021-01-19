@@ -1,5 +1,6 @@
 package com.zizoh.ulesson.domain.repository
 
+import com.zizoh.ulesson.domain.models.Chapter
 import com.zizoh.ulesson.domain.models.Lesson
 import com.zizoh.ulesson.domain.models.Subject
 import com.zizoh.ulesson.domain.models.WatchedTopic
@@ -12,6 +13,8 @@ import kotlinx.coroutines.flow.Flow
 interface SubjectRepository {
 
     fun getSubjects(): Flow<List<Subject>>
+
+    fun getChaptersWithSubjectId(subjectId: Int): Flow<List<Chapter>>
 
     suspend fun saveWatchedTopic(lesson: Lesson)
 

@@ -14,13 +14,13 @@ class ChapterCacheMapper @Inject constructor() :
 
     override fun mapToEntity(model: ChapterCacheModel): ChapterEntity {
         return with(model) {
-            ChapterEntity(chapterId, name, emptyList(), subjectId)
+            ChapterEntity(chapterId, name, emptyList(), subjectId, subjectName)
         }
     }
 
     override fun mapToModel(entity: ChapterEntity): ChapterCacheModel {
         return with(entity) {
-            ChapterCacheModel(id, name, subjectId)
+            ChapterCacheModel(id, name, subjectId, subjectName)
         }
     }
 }

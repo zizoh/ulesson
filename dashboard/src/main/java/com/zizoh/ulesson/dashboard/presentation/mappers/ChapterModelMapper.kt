@@ -15,13 +15,13 @@ class ChapterModelMapper @Inject constructor(
 
     override fun mapToModel(domain: Chapter): ChapterModel {
         return with(domain) {
-            ChapterModel(id, name, lessonModelMapper.mapToModelList(lessons))
+            ChapterModel(id, name, lessonModelMapper.mapToModelList(lessons), subjectName)
         }
     }
 
     override fun mapToDomain(model: ChapterModel): Chapter {
         return with(model) {
-            Chapter(id, name, lessonModelMapper.mapToDomainList(lessons))
+            Chapter(id, name, lessonModelMapper.mapToDomainList(lessons), subjectName)
         }
     }
 }
