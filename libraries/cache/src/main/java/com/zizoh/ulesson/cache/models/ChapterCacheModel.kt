@@ -12,5 +12,6 @@ data class ChapterCacheModel(
     @PrimaryKey
     val chapterId: Int,
     val name: String,
-    val subjectId: Int
+    val subjectId: Int,
+    val subjectName: String
 )

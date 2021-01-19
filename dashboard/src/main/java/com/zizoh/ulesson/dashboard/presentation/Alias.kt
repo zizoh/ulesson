@@ -1,5 +1,8 @@
 package com.zizoh.ulesson.dashboard.presentation
 
+import com.zizoh.ulesson.dashboard.presentation.chapter.mvi.ChapterViewIntent
+import com.zizoh.ulesson.dashboard.presentation.chapter.mvi.ChapterViewResult
+import com.zizoh.ulesson.dashboard.presentation.chapter.mvi.ChapterViewState
 import com.zizoh.ulesson.dashboard.presentation.dashboard.mvi.DashboardViewIntent
 import com.zizoh.ulesson.dashboard.presentation.dashboard.mvi.DashboardViewResult
 import com.zizoh.ulesson.dashboard.presentation.dashboard.mvi.DashboardViewState
@@ -19,3 +22,12 @@ typealias DashboardStateReducer =
 
 typealias DashboardStateMachine =
         @JvmSuppressWildcards StateMachine<DashboardViewIntent, DashboardViewState, DashboardViewResult>
+
+typealias ChapterIntentProcessor =
+        @JvmSuppressWildcards IntentProcessor<ChapterViewIntent, ChapterViewResult>
+
+typealias ChapterStateReducer =
+        @JvmSuppressWildcards ViewStateReducer<ChapterViewState, ChapterViewResult>
+
+typealias ChapterStateMachine =
+        @JvmSuppressWildcards StateMachine<ChapterViewIntent, ChapterViewState, ChapterViewResult>

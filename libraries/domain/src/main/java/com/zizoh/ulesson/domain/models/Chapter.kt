@@ -7,5 +7,6 @@ package com.zizoh.ulesson.domain.models
 data class Chapter(
     val id: Int,
     val name: String,
-    val lessons: List<Lesson>
+    val lessons: List<Lesson>,
+    val subjectName: String
 )

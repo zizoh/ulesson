@@ -5,12 +5,15 @@ import com.zizoh.ulesson.data.contract.cache.LessonCache
 import com.zizoh.ulesson.data.contract.cache.SubjectCache
 import com.zizoh.ulesson.data.contract.cache.WatchedTopicCache
 import com.zizoh.ulesson.data.contract.remote.SubjectRemote
+import com.zizoh.ulesson.data.mappers.ChapterEntityMapper
 import com.zizoh.ulesson.data.mappers.LessonEntityToWatchedTopicMapper
 import com.zizoh.ulesson.data.mappers.SubjectEntityMapper
 import com.zizoh.ulesson.data.mappers.WatchedTopicEntityMapper
 import com.zizoh.ulesson.data.models.ChapterEntity
+import com.zizoh.ulesson.data.models.ChapterWithLessonsEntity
 import com.zizoh.ulesson.data.models.SubjectEntity
 import com.zizoh.ulesson.data.models.WatchedTopicEntity
+import com.zizoh.ulesson.domain.models.Chapter
 import com.zizoh.ulesson.domain.models.Lesson
 import com.zizoh.ulesson.domain.models.Subject
 import com.zizoh.ulesson.domain.models.WatchedTopic
@@ -27,7 +30,8 @@ class SubjectRepositoryImpl @Inject constructor(
     private val watchedTopicEntityMapper: WatchedTopicEntityMapper,
     private val chapterCache: ChapterCache,
     private val lessonCache: LessonCache,
-    private val subjectCache: SubjectCache
+    private val subjectCache: SubjectCache,
+    private val chapterMapper: ChapterEntityMapper
 ) : SubjectRepository {
 
     override fun getSubjects(): Flow<List<Subject>> {
@@ -38,6 +42,7 @@ class SubjectRepositoryImpl @Inject constructor(
                 subjects.forEach { subject ->
                     val chapters: List<ChapterEntity> = subject.chapters.onEach { chapter ->
                         chapter.subjectId = subject.id
+                        chapter.subjectName = subject.name
                     }
                     chapterCache.saveChapters(chapters)
                     chapters.forEach { lessons ->
@@ -50,6 +55,14 @@ class SubjectRepositoryImpl @Inject constructor(
         }
     }
 
+    override fun getChaptersWithSubjectId(subjectId: Int): Flow<List<Chapter>> {
+        return flow {
+            val chapters: List<ChapterWithLessonsEntity> =
+                chapterCache.getChaptersWithLessonsWithSubjectId(subjectId)
+            emit(chapterMapper.mapFromEntityList(chapters))
+        }
+    }
+
     override suspend fun saveWatchedTopic(lesson: Lesson) {
         val watchedTopic: WatchedTopicEntity = lessonMapper.mapToWatchedTopic(lesson)
         watchedTopicCache.saveWatchedTopic(watchedTopic)
@@ -59,7 +72,15 @@ class SubjectRepositoryImpl @Inject constructor(
         return flow {
             val watchedTopics: List<WatchedTopicEntity> =
                 watchedTopicCache.getMostRecentWatchedTopics()
-            emit(watchedTopicEntityMapper.mapFromEntityList(watchedTopics))
+            val topics = listOf(
+                WatchedTopicEntity(
+                    1, "Animals And Plants",
+                    "https://ulesson-staging.s3.eu-west-2.amazonaws.com/lesson_icons/icons/defaults/thumb/lesson.png",
+                    12, 20L,
+                    "Biology"
+                )
+            )
+            emit(watchedTopicEntityMapper.mapFromEntityList(topics))
         }
     }
 

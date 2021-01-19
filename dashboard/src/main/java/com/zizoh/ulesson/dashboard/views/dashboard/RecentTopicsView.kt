@@ -10,7 +10,7 @@ import com.zizoh.ulesson.dashboard.databinding.LayoutRecentTopicsBinding
 import com.zizoh.ulesson.dashboard.navigation.NavigationDispatcher
 import com.zizoh.ulesson.dashboard.presentation.dashboard.mvi.DashboardViewIntent
 import com.zizoh.ulesson.dashboard.presentation.dashboard.mvi.DashboardViewState.RecentTopicsViewState
-import com.zizoh.ulesson.dashboard.ui.dashboard.adapter.RecentTopicAdapter
+import com.zizoh.ulesson.dashboard.ui.dashboard.adapter.WatchedTopicAdapter
 import com.zizoh.ulesson.presentation.mvi.MVIView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.Flow
@@ -28,7 +28,7 @@ class RecentTopicsView @JvmOverloads constructor(context: Context, attributeSet:
     MVIView<DashboardViewIntent, RecentTopicsViewState> {
 
     @Inject
-    lateinit var topicAdapter: RecentTopicAdapter
+    lateinit var topicAdapter: WatchedTopicAdapter
 
     @Inject
     lateinit var navigator: Provider<NavigationDispatcher>

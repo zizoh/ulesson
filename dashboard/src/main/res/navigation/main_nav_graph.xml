@@ -9,6 +9,20 @@
         android:id="@+id/dashboardFragment"
         android:name="com.zizoh.ulesson.dashboard.ui.dashboard.DashboardFragment"
         android:label="DashboardFragment"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard">
+        <action
+            android:id="@+id/action_dashboardFragment_to_chaptersFragment"
+            app:destination="@id/chaptersFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/chaptersFragment"
+        android:name="com.zizoh.ulesson.dashboard.ui.chapter.ChaptersFragment"
+        android:label="ChaptersFragment"
+        tools:layout="@layout/fragment_chapters">
+        <argument
+            android:name="subjectId"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>

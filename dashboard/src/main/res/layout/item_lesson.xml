@@ -1,60 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp"
-    android:layout_height="80dp">
-
-    <ImageView
-        android:id="@+id/iv_lesson_image"
-        android:layout_width="124dp"
-        android:layout_height="match_parent"
-        android:contentDescription="@string/cont_desc_lesson_icon"
-        android:paddingEnd="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:src="@drawable/subject_image_mathematics" />
-
-    <ImageView
-        android:id="@+id/iv_play_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/cont_desc_play_button"
-        app:layout_constraintBottom_toBottomOf="@id/iv_lesson_image"
-        app:layout_constraintEnd_toEndOf="@id/iv_lesson_image"
-        app:layout_constraintStart_toStartOf="@id/iv_lesson_image"
-        app:layout_constraintTop_toTopOf="@id/iv_lesson_image"
-        tools:background="@drawable/play_button_mathematics" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/iv_lesson_image"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/tv_item_lesson_subject_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/mulish_variable_font_wght"
-            android:textSize="12sp"
-            tools:text="Mathematics"
-            tools:textColor="@color/subject_mathematics" />
-
-        <TextView
-            android:id="@+id/tv_item_lesson_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:fontFamily="@font/mulish_variable_font_wght"
-            android:maxLines="2"
-            android:textColor="@color/text_color_dark"
-            android:textSize="16sp"
-            tools:text="Numbers and its properties" />
-
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    android:id="@+id/tv_item_lesson_name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:drawablePadding="8dp"
+    android:ellipsize="end"
+    android:fontFamily="@font/mulish_variable_font_wght"
+    android:gravity="center"
+    android:maxLines="2"
+    android:textColor="@color/text_color_dark"
+    android:textSize="16sp"
+    tools:drawableTop="@drawable/lesson_image"
+    tools:text="Characteristics of Living Things" />
