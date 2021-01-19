@@ -5,11 +5,10 @@
     <color name="amber_primary">#00D97B</color>
     <color name="amber_light">#00D97B</color>
     <color name="amber_dark">#c67100</color>
-    <color name="green">#00D97B</color>
-    <color name="grayish_blue">#A0C1E3</color>
-    <color name="light_blue">#52A2C7</color>
-    <color name="blue">#185DFA</color>
-    <color name="klein_blue">#0021AF</color>
-    <color name="gray">#f2f4f4</color>
-    <color name="gray_dark">#b2babb</color>
+    <color name="text_color_dark">#313848</color>
+    <color name="subject_biology">#4DA47E</color>
+    <color name="subject_chemistry">#F9AD6D</color>
+    <color name="subject_english">#506AAC</color>
+    <color name="subject_mathematics">#EA7052</color>
+    <color name="subject_physics">#7B7FDA</color>
 </resources>

@@ -58,39 +58,35 @@ object Dependencies {
     object View : Libraries {
         object Version {
             const val materialComponent: String = "1.3.0-alpha02"
-            const val shimmerLayout: String = "0.5.0"
             const val appCompat: String = "1.3.0-alpha02"
-            const val constraintLayout: String = "2.0.1"
             const val fragment: String = "1.3.0-alpha08"
-            const val circleImageView = "2.2.0"
             const val progressButton = "2.1.0"
-            const val chart = "v3.1.0"
+            const val picasso = "2.71828"
+            const val picassoTransformations = "2.2.1"
         }
 
         const val appCompat: String = "androidx.appcompat:appcompat:${Version.appCompat}"
         const val fragment: String = "androidx.fragment:fragment-ktx:${Version.fragment}"
         const val materialComponent: String =
             "com.google.android.material:material:${Version.materialComponent}"
-        const val shimmerLayout: String = "com.facebook.shimmer:shimmer:${Version.shimmerLayout}"
-        const val constraintLayout: String =
-            "androidx.constraintlayout:constraintlayout:${Version.constraintLayout}"
-        private const val circleImageView: String =
-            "de.hdodenhof:circleimageview:${Version.circleImageView}"
         private const val progressButton: String =
             "com.github.razir.progressbutton:progressbutton:${Version.progressButton}"
-        private const val chart: String = "com.github.PhilJay:MPAndroidChart:${Version.chart}"
+        private const val picassoImageLoader =
+            "com.squareup.picasso:picasso:${Version.picasso}"
+        private const val picassoTransformations =
+            "jp.wasabeef:picasso-transformations:${Version.picassoTransformations}"
         override val components: List<String> =
-            listOf(appCompat, fragment, circleImageView, progressButton, chart)
+            listOf(appCompat, fragment, picassoImageLoader, picassoTransformations)
     }
 
     object Others {
         object Version {
-            const val jodaTime: String = "2.9.4.2"
-            const val jodaTimeAndroid: String = "2.9.9.4"
+            const val jodaTime: String = "2.9.9"
+            const val jodaTimeAndroid: String = "2.9.9"
         }
 
         const val jodaTimeAndroid: String = "net.danlew:android.joda:${Version.jodaTimeAndroid}"
-        const val jodaTime: String =  "joda-time:joda-time:${Version.jodaTime}"
+        const val jodaTime: String = "joda-time:joda-time:${Version.jodaTime}"
     }
 
     object FlowBinding {

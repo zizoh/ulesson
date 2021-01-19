@@ -54,16 +54,12 @@ dependencies {
 
     with(View) {
         implementAll(components)
-        implementation(fragment)
-        implementation(materialComponent)
-        implementation(constraintLayout)
-        implementation(shimmerLayout)
     }
 
     implementation(FlowBinding.android)
     implementation(DI.hiltAndroid)
     implementation(DI.hiltViewModel)
-    implementation(Others.jodaTimeAndroid)
+//    implementation(Others.jodaTimeAndroid)
     implementAll(AndroidX.components)
     implementAll(Coroutines.components)
 
