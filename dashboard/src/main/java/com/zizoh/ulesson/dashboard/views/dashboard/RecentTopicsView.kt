@@ -42,7 +42,7 @@ class RecentTopicsView @JvmOverloads constructor(context: Context, attributeSet:
 
         binding = LayoutRecentTopicsBinding.inflate(inflater, this, true)
         binding.rvRecentTopics.adapter = topicAdapter.apply {
-            clickListener = navigator.get()::openVideoFragment
+            clickListener = navigator.get()::openVideoFragmentFromDashboardFragment
         }
     }
 

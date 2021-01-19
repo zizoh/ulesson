@@ -14,13 +14,13 @@ class LessonCacheModelMapper @Inject constructor() :
 
     override fun mapToEntity(model: LessonCacheModel): LessonEntity {
         return with(model) {
-            LessonEntity(id, name, icon, mediaUrl, subjectId, chapterId)
+            LessonEntity(id, name, icon, mediaUrl, subjectId, chapterId, chapterName)
         }
     }
 
     override fun mapToModel(entity: LessonEntity): LessonCacheModel {
         return with(entity) {
-            LessonCacheModel(id, name, icon, mediaUrl, subjectId, chapterId)
+            LessonCacheModel(id, name, icon, mediaUrl, subjectId, chapterId, chapterName)
         }
     }
 }

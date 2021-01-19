@@ -4,7 +4,9 @@ interface NavigationDispatcher {
 
     fun openSubjectFragment(subjectId: Int)
 
-    fun openVideoFragment(lessonId: Int)
+    fun openVideoFragmentFromDashboardFragment(lessonId: Int)
+
+    fun openVideoFragmentFromChapterFragment(lessonId: Int)
 
     fun goBack()
 }

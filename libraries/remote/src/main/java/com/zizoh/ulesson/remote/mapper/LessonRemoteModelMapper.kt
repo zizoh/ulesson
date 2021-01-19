@@ -14,7 +14,7 @@ class LessonRemoteModelMapper @Inject constructor() :
 
     override fun mapFromModel(model: LessonRemoteModel): LessonEntity {
         return with(model) {
-            LessonEntity(id, name, icon, media_url, subject_id, chapter_id)
+            LessonEntity(id, name, icon, media_url, subject_id, chapter_id, "")
         }
     }
 }

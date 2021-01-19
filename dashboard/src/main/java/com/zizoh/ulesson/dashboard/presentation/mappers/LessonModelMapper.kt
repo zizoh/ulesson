@@ -13,13 +13,13 @@ class LessonModelMapper @Inject constructor() : ModelMapper<LessonModel, Lesson>
 
     override fun mapToModel(domain: Lesson): LessonModel {
         return with(domain) {
-            LessonModel(id, name, icon, mediaUrl, subjectId, chapterId)
+            LessonModel(id, name, icon, mediaUrl, subjectId, chapterId, chapterName)
         }
     }
 
     override fun mapToDomain(model: LessonModel): Lesson {
         return with(model) {
-            Lesson(id, name, icon, mediaUrl, subjectId, chapterId)
+            Lesson(id, name, icon, mediaUrl, subjectId, chapterId, chapterName)
         }
     }
 }

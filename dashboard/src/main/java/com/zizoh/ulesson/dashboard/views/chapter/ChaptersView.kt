@@ -43,7 +43,7 @@ class ChaptersView @JvmOverloads constructor(context: Context, attributeSet: Att
 
         binding = LayoutChaptersBinding.inflate(inflater, this, true)
         binding.rvChapters.adapter = chapterAdapter.apply {
-            clickListener = navigator.get()::openVideoFragment
+            clickListener = navigator.get()::openVideoFragmentFromChapterFragment
         }
         binding.tvChapter.setOnClickListener {
             navigator.get().goBack()

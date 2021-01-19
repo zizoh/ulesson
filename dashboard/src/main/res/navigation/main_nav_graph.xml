@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_dashboardFragment_to_chaptersFragment"
             app:destination="@id/chaptersFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_videoPlayerFragment"
+            app:destination="@id/videoPlayerFragment" />
     </fragment>
 
     <fragment
@@ -22,6 +25,19 @@
         tools:layout="@layout/fragment_chapters">
         <argument
             android:name="subjectId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_chaptersFragment_to_videoPlayerFragment"
+            app:destination="@id/videoPlayerFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/videoPlayerFragment"
+        android:name="com.zizoh.ulesson.dashboard.ui.video.VideoPlayerFragment"
+        android:label="VideoPlayerFragment"
+        tools:layout="@layout/fragment_video_player">
+        <argument
+            android:name="lessonId"
             app:argType="integer" />
     </fragment>
 

@@ -10,5 +10,6 @@ data class Lesson(
     val icon: String,
     val mediaUrl: String,
     val subjectId: Int,
-    val chapterId: Int
+    val chapterId: Int,
+    val chapterName: String
 )
