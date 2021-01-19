@@ -6,6 +6,18 @@
     android:layout_height="wrap_content"
     tools:context=".views.dashboard.RecentTopicsView">
 
+    <TextView
+        android:id="@+id/tv_watched_topics_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/mulish_variable_font_wght"
+        android:text="@string/recent_watched_topics"
+        android:textColor="@color/text_color_dark"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ProgressBar
         android:id="@+id/recent_topics_progress_bar"
         android:layout_width="wrap_content"
@@ -15,7 +27,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/tv_watched_topics_title" />
 
     <com.zizoh.ulesson.dashboard.views.EmptyStateView
         android:id="@+id/recent_topics_error_state"
@@ -27,7 +39,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/tv_watched_topics_title" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_recent_topics"
@@ -39,7 +51,7 @@
         android:paddingBottom="56dp"
         android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_watched_topics_title"
         app:spanCount="2"
         tools:itemCount="5"
         tools:listitem="@layout/item_lesson"

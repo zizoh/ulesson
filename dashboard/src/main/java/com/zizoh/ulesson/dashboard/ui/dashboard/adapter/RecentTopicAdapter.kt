@@ -4,11 +4,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.zizoh.ulesson.core.ext.getImage
 import com.zizoh.ulesson.core.ext.inflate
 import com.zizoh.ulesson.dashboard.R
 import com.zizoh.ulesson.dashboard.databinding.ItemLessonBinding
 import com.zizoh.ulesson.dashboard.presentation.models.WatchedTopicModel
 import com.zizoh.ulesson.dashboard.ui.dashboard.adapter.resourceprovider.recenttopic.RecentTopicResourceProviderFactory
+import com.zizoh.ulesson.dashboard.views.ImageLoader
 import javax.inject.Inject
 
 /**
@@ -20,10 +22,16 @@ typealias RecentTopicClickListener = (Int) -> Unit
 class RecentTopicAdapter @Inject constructor(
 ) : ListAdapter<WatchedTopicModel, RecentTopicAdapter.RecentTopicViewHolder>(diffUtilCallback) {
 
+    @Inject
+    lateinit var imageLoader: ImageLoader
+
     var clickListener: RecentTopicClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecentTopicViewHolder {
-        return RecentTopicViewHolder(ItemLessonBinding.bind(parent.inflate(R.layout.item_lesson)))
+        return RecentTopicViewHolder(
+            ItemLessonBinding.bind(parent.inflate(R.layout.item_lesson)),
+            imageLoader
+        )
     }
 
     override fun onBindViewHolder(holder: RecentTopicViewHolder, position: Int) {
@@ -31,18 +39,23 @@ class RecentTopicAdapter @Inject constructor(
     }
 
     class RecentTopicViewHolder(
-        private val binding: ItemLessonBinding
+        private val binding: ItemLessonBinding,
+        private val imageLoader: ImageLoader
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(lesson: WatchedTopicModel, clickListener: RecentTopicClickListener?) {
             val resourceFactory = RecentTopicResourceProviderFactory(lesson, binding.root.context)
             val provider = resourceFactory.getProvider()
-            binding.ivPlayButton.setImageDrawable(provider.getPlayButtonDrawable())
-            binding.tvItemLessonSubjectName.text = lesson.subjectName
-            binding.tvItemLessonName.text = lesson.name
-            binding.root.setOnClickListener {
-                clickListener?.invoke(lesson.id)
+            with(binding) {
+                ivPlayButton.setImageDrawable(provider.getPlayButtonDrawable())
+                tvItemLessonSubjectName.text = lesson.subjectName
+                tvItemLessonName.text = lesson.name
+                root.setOnClickListener {
+                    clickListener?.invoke(lesson.id)
+                }
+                imageLoader.loadImage(lesson.icon, ivLessonImage, 16)
             }
+
         }
     }
 

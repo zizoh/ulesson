@@ -54,10 +54,6 @@ dependencies {
 
     with(View) {
         implementAll(components)
-        implementation(fragment)
-        implementation(materialComponent)
-        implementation(constraintLayout)
-        implementation(shimmerLayout)
     }
 
     implementation(FlowBinding.android)

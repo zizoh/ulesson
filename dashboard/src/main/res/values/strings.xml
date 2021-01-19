@@ -12,4 +12,5 @@
     <string name="an_error_occurred">An error occured</string>
     <string name="no_recently_watched_topics_title">No Recently Watched Topics</string>
     <string name="no_recently_watched_topics_caption">Topics you watch will show here.</string>
+    <string name="recent_watched_topics">Recent watched topics</string>
 </resources>
