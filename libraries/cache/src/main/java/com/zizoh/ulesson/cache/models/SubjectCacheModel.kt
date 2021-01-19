@@ -10,8 +10,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "subjects")
 data class SubjectCacheModel(
     @PrimaryKey
-    val id: Int,
+    val subjectId: Int,
     val name: String,
-    val icon: String,
-    val chapters: List<ChapterCacheModel>
+    val icon: String
 )

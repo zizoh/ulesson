@@ -10,18 +10,15 @@ import javax.inject.Inject
  */
 
 class SubjectEntityMapper @Inject constructor(
-    private val chapterEntityMapper: ChapterEntityMapper
 ) : EntityMapper<SubjectEntity, Subject> {
 
     override fun mapFromEntity(entity: SubjectEntity): Subject {
         return with(entity) {
-            Subject(id, name, icon, chapterEntityMapper.mapFromEntityList(chapters))
+            Subject(id, name, icon, emptyList())
         }
     }
 
     override fun mapToEntity(domain: Subject): SubjectEntity {
-        return with(domain) {
-            SubjectEntity(id, name, icon, chapterEntityMapper.mapFromDomainList(chapters))
-        }
+        throw IllegalStateException("Not mapping to entity")
     }
 }

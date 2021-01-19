@@ -1,38 +1,23 @@
 package com.zizoh.ulesson.cache.impl
 
-import com.zizoh.ulesson.cache.mappers.WatchedTopicCacheMapper
-import com.zizoh.ulesson.cache.models.WatchedTopicCacheModel
-import com.zizoh.ulesson.cache.room.WatchedTopicDao
+import com.zizoh.ulesson.cache.mappers.SubjectCacheMapper
+import com.zizoh.ulesson.cache.room.dao.SubjectDao
 import com.zizoh.ulesson.data.contract.cache.SubjectCache
 import com.zizoh.ulesson.data.models.SubjectEntity
-import com.zizoh.ulesson.data.models.WatchedTopicEntity
 import javax.inject.Inject
 
-/**
- * Created by zizoh on 17/January/2021.
- */
-
 class SubjectCacheImpl @Inject constructor(
-    private val dao: WatchedTopicDao,
-    private val mapper: WatchedTopicCacheMapper
+    private val dao: SubjectDao,
+    private val mapper: SubjectCacheMapper
 ) : SubjectCache {
 
+    override suspend fun saveSubjects(subjects: List<SubjectEntity>) {
+        val subjectsCache = mapper.mapToModelList(subjects)
+        dao.saveSubjects(subjectsCache)
+    }
+
     override suspend fun getSubjects(): List<SubjectEntity> {
-        return emptyList()
-    }
-
-    override suspend fun saveWatchedTopic(topic: WatchedTopicEntity) {
-        val topicCache: WatchedTopicCacheModel = mapper.mapToModel(topic)
-        dao.saveWatchedTopic(topicCache)
-    }
-
-    override suspend fun getMostRecentWatchedTopics(): List<WatchedTopicEntity> {
-        val topics: List<WatchedTopicCacheModel> = dao.getMostRecentWatchedTopics()
-        return mapper.mapToEntityList(topics)
-    }
-
-    override suspend fun getAllWatchedTopics(): List<WatchedTopicEntity> {
-        val topics: List<WatchedTopicCacheModel> = dao.getAllRecentWatchedTopics()
-        return mapper.mapToEntityList(topics)
+        val subjectsCache = dao.getSubjects()
+        return mapper.mapToEntityList(subjectsCache)
     }
 }

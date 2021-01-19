@@ -1,4 +1,4 @@
-package com.zizoh.ulesson.cache.room
+package com.zizoh.ulesson.cache.room.dao
 
 import androidx.room.Dao
 import androidx.room.Insert

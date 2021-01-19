@@ -7,5 +7,6 @@ package com.zizoh.ulesson.data.models
 data class ChapterEntity(
     val id: Int,
     val name: String,
-    val lessons: List<LessonEntity>
+    val lessons: List<LessonEntity>,
+    var subjectId: Int
 )

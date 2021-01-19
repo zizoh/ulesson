@@ -18,9 +18,8 @@ class ChapterRemoteModelMapper @Inject constructor(
             ChapterEntity(
                 id,
                 name,
-                lessonRemoteModelMapper.mapFromModelList(lessons.onEach {
-                    it.subjectName = model.subjectName
-                })
+                lessonRemoteModelMapper.mapFromModelList(lessons),
+                0
             )
         }
     }

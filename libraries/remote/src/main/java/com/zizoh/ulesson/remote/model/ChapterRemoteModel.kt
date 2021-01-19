@@ -8,6 +8,4 @@ data class ChapterRemoteModel(
     val id: Int,
     val name: String,
     val lessons: List<LessonRemoteModel>
-){
-    var subjectName: String = ""
-}
+)

@@ -15,6 +15,5 @@ data class LessonCacheModel(
     val icon: String,
     val mediaUrl: String,
     val subjectId: Int,
-    val subjectName: String,
     val chapterId: Int
 )

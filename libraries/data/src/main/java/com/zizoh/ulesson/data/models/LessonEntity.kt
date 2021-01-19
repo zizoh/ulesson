@@ -10,6 +10,5 @@ data class LessonEntity(
     val icon: String,
     val mediaUrl: String,
     val subjectId: Int,
-    val subjectName: String,
     val chapterId: Int
 )
