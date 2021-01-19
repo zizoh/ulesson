@@ -17,11 +17,8 @@ class WatchedTopicEntityMapper @Inject constructor() :
                 id,
                 name,
                 icon,
-                mediaUrl,
-                subjectId,
-                subjectName,
-                chapterId,
-                watchedDate
+                watchedDate,
+                subjectName
             )
         }
     }
@@ -32,11 +29,9 @@ class WatchedTopicEntityMapper @Inject constructor() :
                 id,
                 name,
                 icon,
-                mediaUrl,
-                subjectId,
+                0,
+                watchedDate,
                 subjectName,
-                chapterId,
-                watchedDate
             )
         }
     }

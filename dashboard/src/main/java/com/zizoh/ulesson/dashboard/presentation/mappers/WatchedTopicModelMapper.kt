@@ -13,22 +13,13 @@ class WatchedTopicModelMapper @Inject constructor() : ModelMapper<WatchedTopicMo
 
     override fun mapToModel(domain: WatchedTopic): WatchedTopicModel {
         return with(domain) {
-            WatchedTopicModel(
-                id,
-                name,
-                icon,
-                mediaUrl,
-                subjectId,
-                subjectName,
-                chapterId,
-                watchedDate
-            )
+            WatchedTopicModel(id, name, icon, watchedDate, subjectName)
         }
     }
 
     override fun mapToDomain(model: WatchedTopicModel): WatchedTopic {
         return with(model) {
-            WatchedTopic(id, name, icon, mediaUrl, subjectId, subjectName, chapterId, watchedDate)
+            WatchedTopic(id, name, icon, watchedDate, subjectName)
         }
     }
 }

@@ -2,6 +2,7 @@ package com.zizoh.ulesson.cache.impl
 
 import com.zizoh.ulesson.cache.mappers.WatchedTopicCacheMapper
 import com.zizoh.ulesson.cache.models.WatchedTopicCacheModel
+import com.zizoh.ulesson.cache.models.WatchedTopicDatabaseModel
 import com.zizoh.ulesson.cache.room.dao.WatchedTopicDao
 import com.zizoh.ulesson.data.contract.cache.WatchedTopicCache
 import com.zizoh.ulesson.data.models.WatchedTopicEntity
@@ -17,7 +18,9 @@ class WatchedTopicCacheImpl @Inject constructor(
 ) : WatchedTopicCache {
 
     override suspend fun saveWatchedTopic(topic: WatchedTopicEntity) {
-        val topicCache: WatchedTopicCacheModel = mapper.mapToModel(topic)
+        val topicCache: WatchedTopicDatabaseModel = with(topic) {
+            WatchedTopicDatabaseModel(id, subjectId, watchedDate)
+        }
         dao.saveWatchedTopic(topicCache)
     }
 

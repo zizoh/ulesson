@@ -11,7 +11,6 @@ import com.zizoh.ulesson.data.mappers.WatchedTopicEntityMapper
 import com.zizoh.ulesson.data.models.ChapterEntity
 import com.zizoh.ulesson.data.models.SubjectEntity
 import com.zizoh.ulesson.data.models.WatchedTopicEntity
-import com.zizoh.ulesson.data.utils.DateUtils
 import com.zizoh.ulesson.domain.models.Lesson
 import com.zizoh.ulesson.domain.models.Subject
 import com.zizoh.ulesson.domain.models.WatchedTopic
@@ -44,7 +43,6 @@ class SubjectRepositoryImpl @Inject constructor(
                     chapters.forEach { lessons ->
                         lessonCache.saveLessons(lessons.lessons)
                     }
-
                 }
             }
             val subjectsCache = subjectCache.getSubjects()
@@ -54,9 +52,6 @@ class SubjectRepositoryImpl @Inject constructor(
 
     override suspend fun saveWatchedTopic(lesson: Lesson) {
         val watchedTopic: WatchedTopicEntity = lessonMapper.mapToWatchedTopic(lesson)
-            .apply {
-                watchedDate = DateUtils.getCurrentTime()
-            }
         watchedTopicCache.saveWatchedTopic(watchedTopic)
     }
 

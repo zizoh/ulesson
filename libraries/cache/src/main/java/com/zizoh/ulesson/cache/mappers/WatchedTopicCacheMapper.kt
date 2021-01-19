@@ -15,30 +15,12 @@ class WatchedTopicCacheMapper @Inject constructor() :
     override fun mapToEntity(model: WatchedTopicCacheModel): WatchedTopicEntity {
         return with(model) {
             WatchedTopicEntity(
-                id,
-                name,
-                icon,
-                mediaUrl,
-                subjectId,
-                subjectName,
-                chapterId,
-                watchedDate
+                id, name, icon, 0, watchedDate, subjectName
             )
         }
     }
 
     override fun mapToModel(entity: WatchedTopicEntity): WatchedTopicCacheModel {
-        return with(entity) {
-            WatchedTopicCacheModel(
-                id,
-                name,
-                icon,
-                mediaUrl,
-                subjectId,
-                subjectName,
-                chapterId,
-                watchedDate
-            )
-        }
+        throw IllegalStateException("Not mapping to cache model")
     }
 }

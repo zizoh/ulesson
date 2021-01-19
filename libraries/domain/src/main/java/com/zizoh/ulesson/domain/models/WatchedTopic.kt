@@ -8,9 +8,6 @@ data class WatchedTopic(
     val id: Int,
     val name: String,
     val icon: String,
-    val mediaUrl: String,
-    val subjectId: Int,
-    val subjectName: String,
-    val chapterId: Int,
-    val watchedDate: Long
+    val watchedDate: Long,
+    val subjectName: String
 )
