@@ -4,6 +4,8 @@ import com.zizoh.ulesson.cache.mappers.SubjectCacheMapper
 import com.zizoh.ulesson.cache.room.dao.SubjectDao
 import com.zizoh.ulesson.data.contract.cache.SubjectCache
 import com.zizoh.ulesson.data.models.SubjectEntity
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class SubjectCacheImpl @Inject constructor(
@@ -16,8 +18,9 @@ class SubjectCacheImpl @Inject constructor(
         dao.saveSubjects(subjectsCache)
     }
 
-    override suspend fun getSubjects(): List<SubjectEntity> {
-        val subjectsCache = dao.getSubjects()
-        return mapper.mapToEntityList(subjectsCache)
+    override fun getSubjects(): Flow<List<SubjectEntity>> {
+        return dao.getSubjects().map {
+            mapper.mapToEntityList(it)
+        }
     }
 }

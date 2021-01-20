@@ -13,6 +13,7 @@ import com.zizoh.ulesson.domain.models.Subject
 import com.zizoh.ulesson.domain.models.WatchedTopic
 import com.zizoh.ulesson.domain.repository.SubjectRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -50,8 +51,9 @@ class SubjectRepositoryImpl @Inject constructor(
                     }
                 }
             }
-            val subjectsCache = subjectCache.getSubjects()
-            emit(subjectEntityMapper.mapFromEntityList(subjectsCache))
+            emitAll(subjectCache.getSubjects().map {
+                subjectEntityMapper.mapFromEntityList(it)
+            })
         }
     }
 
