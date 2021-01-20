@@ -14,8 +14,8 @@ import com.zizoh.ulesson.dashboard.ui.chapter.adapter.ChapterAdapter
 import com.zizoh.ulesson.presentation.mvi.MVIView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 import javax.inject.Provider
 
@@ -50,7 +50,12 @@ class ChaptersView @JvmOverloads constructor(context: Context, attributeSet: Att
         }
     }
 
-    fun retryIntent(subjectId:Int): Flow<ChapterViewIntent> =
+    private val saveWatchedTopic: Flow<ChapterViewIntent>
+        get() = chapterAdapter.clicks
+            .onEach(navigator.get()::openVideoFragmentFromChapterFragment)
+            .map(ChapterViewIntent::SaveWatchedTopic)
+
+    fun retryIntent(subjectId: Int): Flow<ChapterViewIntent> =
         binding.chaptersErrorState.clicks.map {
             ChapterViewIntent.LoadChapters(subjectId)
         }
@@ -91,5 +96,5 @@ class ChaptersView @JvmOverloads constructor(context: Context, attributeSet: Att
     }
 
     override val intents: Flow<ChapterViewIntent>
-        get() = flowOf()
+        get() = saveWatchedTopic
 }

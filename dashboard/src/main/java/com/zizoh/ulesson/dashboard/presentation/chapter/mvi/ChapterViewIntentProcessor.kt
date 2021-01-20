@@ -1,8 +1,10 @@
 package com.zizoh.ulesson.dashboard.presentation.chapter.mvi
 
 import com.zizoh.ulesson.dashboard.presentation.ChapterIntentProcessor
+import com.zizoh.ulesson.dashboard.presentation.mappers.LessonModelMapper
 import com.zizoh.ulesson.domain.models.Chapter
 import com.zizoh.ulesson.domain.usecase.GetChaptersForSubject
+import com.zizoh.ulesson.domain.usecase.SaveWatchedTopic
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
@@ -11,7 +13,9 @@ import javax.inject.Inject
  */
 
 class ChapterViewIntentProcessor @Inject constructor(
-    private val getChapters: GetChaptersForSubject
+    private val getChapters: GetChaptersForSubject,
+    private val saveWatchedTopic: SaveWatchedTopic,
+    private val lessonModelMapper: LessonModelMapper
 ) : ChapterIntentProcessor {
 
     override fun intentToResult(viewIntent: ChapterViewIntent): Flow<ChapterViewResult> {
@@ -26,6 +30,9 @@ class ChapterViewIntentProcessor @Inject constructor(
                     error.printStackTrace()
                     emit(ChapterViewResult.Error(error))
                 }
+            }
+            is ChapterViewIntent.SaveWatchedTopic -> flow {
+                saveWatchedTopic(lessonModelMapper.mapToDomain(viewIntent.lessonModel))
             }
         }
     }
