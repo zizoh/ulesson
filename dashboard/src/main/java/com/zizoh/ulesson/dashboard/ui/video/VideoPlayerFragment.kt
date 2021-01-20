@@ -51,6 +51,16 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player),
         viewModel.viewState.observe(viewLifecycleOwner, ::render)
     }
 
+    override fun onPause() {
+        super.onPause()
+        binding.chapters.pausePlayer()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        binding.chapters.stopPlayer()
+    }
+
     override fun render(state: VideoViewState) {
         binding.chapters.render(state)
     }

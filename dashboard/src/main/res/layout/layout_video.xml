@@ -18,6 +18,13 @@
             android:layout_height="match_parent"
             tools:background="@drawable/video_image" />
 
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/player_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:show_buffering="always" />
+
         <ImageView
             android:id="@+id/iv_back_button"
             android:layout_width="wrap_content"
@@ -26,14 +33,6 @@
             android:drawablePadding="16dp"
             android:padding="16dp"
             app:srcCompat="@drawable/back_button_white" />
-
-        <ImageView
-            android:id="@+id/btn_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:contentDescription="@string/cont_desc_play_button"
-            tools:background="@drawable/play_button_mathematics" />
 
     </FrameLayout>
 
