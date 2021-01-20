@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.zizoh.ulesson.cache.models.WatchedTopicCacheModel
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Created by zizoh on 17/January/2021.
@@ -17,8 +18,8 @@ interface WatchedTopicDao {
     suspend fun saveWatchedTopic(topicCacheModel: WatchedTopicCacheModel)
 
     @Query("SELECT * FROM watched_topics")
-    suspend fun getMostRecentWatchedTopics(): List<WatchedTopicCacheModel>
+    fun getMostRecentWatchedTopics(): Flow<List<WatchedTopicCacheModel>>
 
     @Query("SELECT * FROM watched_topics")
-    suspend fun getAllRecentWatchedTopics(): List<WatchedTopicCacheModel>
+    fun getAllRecentWatchedTopics(): Flow<List<WatchedTopicCacheModel>>
 }
