@@ -1,7 +1,8 @@
 package com.zizoh.ulesson.dashboard.presentation.dashboard.mvi
 
-import com.zizoh.ulesson.dashboard.presentation.models.WatchedTopicModel
 import com.zizoh.ulesson.dashboard.presentation.models.SubjectModel
+import com.zizoh.ulesson.dashboard.presentation.models.WatchedTopicModel
+import com.zizoh.ulesson.presentation.event.ViewEvent
 import com.zizoh.ulesson.presentation.mvi.ViewState
 
 /**
@@ -14,14 +15,26 @@ sealed class DashboardViewState : ViewState {
         object Loading : SubjectsViewState()
         data class SubjectsLoaded(val subjects: List<SubjectModel>) : SubjectsViewState()
         object SubjectsEmpty : SubjectsViewState()
-        data class Error(val message: String) : SubjectsViewState()
+        data class Error(
+            val message: String,
+            val subjects: List<SubjectModel>? = null
+        ) : SubjectsViewState()
+        data class TransientErrorState(
+            val message: ViewEvent<String>,
+            val subjects: List<SubjectModel>? = null
+        ) : SubjectsViewState()
     }
 
     sealed class RecentTopicsViewState : DashboardViewState() {
         object LoadingMostRecentWatchedTopics : RecentTopicsViewState()
-        data class MostRecentWatchedTopicsLoaded(val lessons: List<WatchedTopicModel>) : RecentTopicsViewState()
+        data class MostRecentWatchedTopicsLoaded(
+            val lessons: List<WatchedTopicModel>
+        ) : RecentTopicsViewState()
+
         object RecentTopicsEmpty : RecentTopicsViewState()
         object LoadingAllWatchedTopics : RecentTopicsViewState()
-        data class AllWatchedTopicsLoaded(val lessons: List<WatchedTopicModel>) : RecentTopicsViewState()
+        data class AllWatchedTopicsLoaded(
+            val lessons: List<WatchedTopicModel>
+        ) : RecentTopicsViewState()
     }
 }

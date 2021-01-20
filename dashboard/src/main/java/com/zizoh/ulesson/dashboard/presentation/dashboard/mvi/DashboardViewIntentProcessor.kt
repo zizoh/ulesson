@@ -35,11 +35,21 @@ class DashboardViewIntentProcessor @Inject constructor(
 
     private fun loadSubjects(): Flow<DashboardViewResult> {
         return getSubjects()
-            .map { subjects ->
-                if (subjects.isNotEmpty()) {
-                    SubjectsResult.Success(subjects)
+            .map { result ->
+                val error: Throwable? = result.error
+                if (error == null) {
+                    val subjects = result.subjects
+                    if (subjects.isNotEmpty()) {
+                        SubjectsResult.Success(subjects)
+                    } else {
+                        SubjectsResult.Empty
+                    }
                 } else {
-                    SubjectsResult.Empty
+                    if (result.subjects.isEmpty()) {
+                        SubjectsResult.Error(error)
+                    } else {
+                        SubjectsResult.Error(error, result.subjects)
+                    }
                 }
             }.onStart {
                 emit(SubjectsResult.Loading)

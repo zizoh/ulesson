@@ -9,13 +9,10 @@ import com.zizoh.ulesson.data.mappers.*
 import com.zizoh.ulesson.data.models.*
 import com.zizoh.ulesson.domain.models.Chapter
 import com.zizoh.ulesson.domain.models.Lesson
-import com.zizoh.ulesson.domain.models.Subject
+import com.zizoh.ulesson.domain.models.SubjectResult
 import com.zizoh.ulesson.domain.models.WatchedTopic
 import com.zizoh.ulesson.domain.repository.SubjectRepository
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.emitAll
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 class SubjectRepositoryImpl @Inject constructor(
@@ -31,29 +28,36 @@ class SubjectRepositoryImpl @Inject constructor(
     private val lessonMapper: LessonEntityMapper
 ) : SubjectRepository {
 
-    override fun getSubjects(): Flow<List<Subject>> {
+    override fun getSubjects(): Flow<SubjectResult> {
         return flow {
-            val subjects: List<SubjectEntity> = subjectRemote.getSubjects()
-            if (subjects.isNotEmpty()) {
-                subjectCache.saveSubjects(subjects)
-                subjects.forEach { subject ->
-                    val chapters: List<ChapterEntity> = subject.chapters.onEach { chapter ->
-                        chapter.subjectId = subject.id
-                        chapter.subjectName = subject.name
+            fetchSubjectsAndCache()
+            emitAll(subjectCache.getSubjects().map {
+                SubjectResult(subjectEntityMapper.mapFromEntityList(it))
+            })
+        }.catch { cause: Throwable ->
+            val previousData = subjectCache.getSubjects().first()
+            emit(SubjectResult(subjectEntityMapper.mapFromEntityList(previousData), cause))
+        }
+    }
+
+    private suspend fun fetchSubjectsAndCache() {
+        val subjects: List<SubjectEntity> = subjectRemote.getSubjects()
+        if (subjects.isNotEmpty()) {
+            subjectCache.saveSubjects(subjects)
+            subjects.forEach { subject ->
+                val chapters: List<ChapterEntity> = subject.chapters.onEach { chapter ->
+                    chapter.subjectId = subject.id
+                    chapter.subjectName = subject.name
+                }
+                chapterCache.saveChapters(chapters)
+                chapters.forEach { chapter ->
+                    val lessons = chapter.lessons.onEach { lesson ->
+                        lesson.chapterName = chapter.name
+                        lesson.subjectName = subject.name
                     }
-                    chapterCache.saveChapters(chapters)
-                    chapters.forEach { chapter ->
-                        val lessons = chapter.lessons.onEach { lesson ->
-                            lesson.chapterName = chapter.name
-                            lesson.subjectName = subject.name
-                        }
-                        lessonCache.saveLessons(lessons)
-                    }
+                    lessonCache.saveLessons(lessons)
                 }
             }
-            emitAll(subjectCache.getSubjects().map {
-                subjectEntityMapper.mapFromEntityList(it)
-            })
         }
     }
 

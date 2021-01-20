@@ -1,9 +1,6 @@
 package com.zizoh.ulesson.domain.repository
 
-import com.zizoh.ulesson.domain.models.Chapter
-import com.zizoh.ulesson.domain.models.Lesson
-import com.zizoh.ulesson.domain.models.Subject
-import com.zizoh.ulesson.domain.models.WatchedTopic
+import com.zizoh.ulesson.domain.models.*
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -12,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface SubjectRepository {
 
-    fun getSubjects(): Flow<List<Subject>>
+    fun getSubjects(): Flow<SubjectResult>
 
     fun getChaptersWithSubjectId(subjectId: Int): Flow<List<Chapter>>
 

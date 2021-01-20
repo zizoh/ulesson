@@ -8,6 +8,7 @@ import com.zizoh.ulesson.dashboard.presentation.dashboard.mvi.DashboardViewState
 import com.zizoh.ulesson.dashboard.presentation.dashboard.mvi.DashboardViewState.SubjectsViewState
 import com.zizoh.ulesson.dashboard.presentation.mappers.SubjectModelMapper
 import com.zizoh.ulesson.dashboard.presentation.mappers.WatchedTopicModelMapper
+import com.zizoh.ulesson.presentation.event.ViewEvent
 import javax.inject.Inject
 
 /**
@@ -26,7 +27,17 @@ class DashboardViewStateReducer @Inject constructor(
         return when (result) {
             SubjectsResult.Loading -> SubjectsViewState.Loading
             SubjectsResult.Empty -> SubjectsViewState.SubjectsEmpty
-            is SubjectsResult.Error -> SubjectsViewState.Error(result.throwable.errorMessage)
+            is SubjectsResult.Error -> {
+                val subjects = result.subjects
+                if (subjects == null) {
+                    SubjectsViewState.Error(result.throwable.errorMessage)
+                } else {
+                    SubjectsViewState.TransientErrorState(
+                        ViewEvent(result.throwable.errorMessage),
+                        subjectModelMapper.mapToModelList(result.subjects)
+                    )
+                }
+            }
             is SubjectsResult.Success -> {
                 SubjectsViewState.SubjectsLoaded(subjectModelMapper.mapToModelList(result.subjects))
             }
@@ -35,7 +46,11 @@ class DashboardViewStateReducer @Inject constructor(
                 RecentTopicsViewState.LoadingMostRecentWatchedTopics
             }
             is WatchedTopicsResult.MostRecentWatchedTopicsLoaded -> {
-                RecentTopicsViewState.MostRecentWatchedTopicsLoaded(lessonModelMapper.mapToModelList(result.lessons))
+                RecentTopicsViewState.MostRecentWatchedTopicsLoaded(
+                    lessonModelMapper.mapToModelList(
+                        result.lessons
+                    )
+                )
             }
             WatchedTopicsResult.LoadingAllWatchedTopics -> {
                 RecentTopicsViewState.LoadingAllWatchedTopics

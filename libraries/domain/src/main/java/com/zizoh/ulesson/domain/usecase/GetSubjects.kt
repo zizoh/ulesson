@@ -1,7 +1,7 @@
 package com.zizoh.ulesson.domain.usecase
 
 import com.zizoh.ulesson.domain.executor.PostExecutionThread
-import com.zizoh.ulesson.domain.models.Subject
+import com.zizoh.ulesson.domain.models.SubjectResult
 import com.zizoh.ulesson.domain.repository.SubjectRepository
 import com.zizoh.ulesson.domain.usecase.base.FlowUseCase
 import kotlinx.coroutines.CoroutineDispatcher
@@ -15,12 +15,12 @@ import javax.inject.Inject
 class GetSubjects @Inject constructor(
     private val repository: SubjectRepository,
     private val postExecutionThread: PostExecutionThread
-) : FlowUseCase<Unit, List<Subject>>() {
+) : FlowUseCase<Unit, SubjectResult>() {
 
     override val dispatcher: CoroutineDispatcher
         get() = postExecutionThread.io
 
-    override fun execute(params: Unit?): Flow<List<Subject>> {
+    override fun execute(params: Unit?): Flow<SubjectResult> {
         return repository.getSubjects()
     }
 }
