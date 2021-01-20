@@ -47,12 +47,13 @@ class WatchedTopicAdapter @Inject constructor(
             val provider = resourceFactory.getProvider()
             with(binding) {
                 ivPlayButton.setImageDrawable(provider.getPlayButtonDrawable())
+                tvItemLessonSubjectName.setTextColor(provider.getColor())
                 tvItemLessonSubjectName.text = lesson.subjectName
                 tvItemTopicName.text = lesson.name
                 root.setOnClickListener {
                     clickListener?.invoke(lesson.id)
                 }
-                imageLoader.loadImage(lesson.icon, ivLessonImage, 16)
+                imageLoader.loadImage(lesson.icon, ivLessonImage, 24)
             }
 
         }

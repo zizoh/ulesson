@@ -3,6 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/iv_subject_icon"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="112dp"
     android:contentDescription="@string/cont_desc_subject_icon"
     tools:src="@drawable/subject_background_mathematics" />

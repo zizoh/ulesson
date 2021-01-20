@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.core.view.isVisible
+import com.zizoh.ulesson.core.ext.dpToPx
 import com.zizoh.ulesson.dashboard.R
 import com.zizoh.ulesson.dashboard.databinding.LayoutSubjectsBinding
 import com.zizoh.ulesson.dashboard.navigation.NavigationDispatcher
@@ -12,6 +13,7 @@ import com.zizoh.ulesson.dashboard.presentation.dashboard.mvi.DashboardViewInten
 import com.zizoh.ulesson.dashboard.presentation.dashboard.mvi.DashboardViewState.SubjectsViewState
 import com.zizoh.ulesson.dashboard.presentation.dashboard.mvi.SubjectViewIntent
 import com.zizoh.ulesson.dashboard.ui.dashboard.adapter.SubjectAdapter
+import com.zizoh.ulesson.dashboard.views.SpacingItemDecoration
 import com.zizoh.ulesson.presentation.mvi.MVIView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.Flow
@@ -43,6 +45,7 @@ class SubjectsView @JvmOverloads constructor(context: Context, attributeSet: Att
             .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
         binding = LayoutSubjectsBinding.inflate(inflater, this, true)
+        binding.rvSubjects.addItemDecoration(SpacingItemDecoration(context.dpToPx(24), context.dpToPx(4), false, true))
         binding.rvSubjects.adapter = subjectAdapter.apply {
             clickListener = navigator.get()::openSubjectFragment
         }

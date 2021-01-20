@@ -4,12 +4,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.zizoh.ulesson.core.ext.dpToPx
 import com.zizoh.ulesson.core.ext.inflate
 import com.zizoh.ulesson.core.ext.safeOffer
 import com.zizoh.ulesson.dashboard.R
 import com.zizoh.ulesson.dashboard.databinding.ItemChapterBinding
 import com.zizoh.ulesson.dashboard.presentation.models.ChapterModel
 import com.zizoh.ulesson.dashboard.presentation.models.LessonModel
+import com.zizoh.ulesson.dashboard.views.SpacingItemDecoration
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -60,6 +62,15 @@ class ChapterAdapter @Inject constructor(
             with(binding) {
                 tvChapterName.text = chapter.name
                 lessonAdapter.clickListener = clickListener
+                val context = binding.root.context
+                rvLessons.addItemDecoration(
+                    SpacingItemDecoration(
+                        context.dpToPx(8),
+                        context.dpToPx(0),
+                        false,
+                        isVertical = false
+                    )
+                )
                 rvLessons.adapter = lessonAdapter.apply {
                     submitList(chapter.lessons)
                 }

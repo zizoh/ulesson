@@ -2,6 +2,7 @@ package com.zizoh.ulesson.core.ext
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import android.util.DisplayMetrics
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.zizoh.ulesson.core.R
+import kotlin.math.roundToInt
 
 fun Context.getImage(@DrawableRes id: Int): Drawable? {
     return ContextCompat.getDrawable(this, id)
@@ -46,4 +48,9 @@ fun Fragment.showSnackbar(
         view.layoutParams = params
         snack.show()
     }
+}
+
+fun Context.dpToPx(dp: Int): Int {
+    val displayMetrics = resources.displayMetrics
+    return (dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT)).roundToInt()
 }
