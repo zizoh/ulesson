@@ -44,7 +44,7 @@ class LessonAdapter @Inject constructor(
                 tvItemLessonName.text = lesson.name
                 imageLoader.loadImage(lesson.icon, tvItemLessonName)
                 root.setOnClickListener {
-                    clickListener?.invoke(lesson.id)
+                    clickListener?.invoke(lesson)
                 }
             }
         }
