@@ -63,6 +63,7 @@ object Dependencies {
             const val progressButton = "2.1.0"
             const val picasso = "2.71828"
             const val picassoTransformations = "2.2.1"
+            const val exoplayer = "2.10.3"
         }
 
         const val appCompat: String = "androidx.appcompat:appcompat:${Version.appCompat}"
@@ -75,8 +76,9 @@ object Dependencies {
             "com.squareup.picasso:picasso:${Version.picasso}"
         private const val picassoTransformations =
             "jp.wasabeef:picasso-transformations:${Version.picassoTransformations}"
+        private const val exoplayer = "com.google.android.exoplayer:exoplayer:${Version.exoplayer}"
         override val components: List<String> =
-            listOf(appCompat, fragment, picassoImageLoader, picassoTransformations)
+            listOf(appCompat, fragment, picassoImageLoader, picassoTransformations, exoplayer)
     }
 
     object Others {

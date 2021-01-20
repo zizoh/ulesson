@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:drawableStart="@drawable/back_button"
+        android:drawableStart="@drawable/back_button_black"
         android:drawablePadding="16dp"
         android:fontFamily="@font/mulish_variable_font_wght"
         android:textColor="@color/text_color_dark"

@@ -6,6 +6,9 @@ import com.zizoh.ulesson.dashboard.presentation.chapter.mvi.ChapterViewState
 import com.zizoh.ulesson.dashboard.presentation.dashboard.mvi.DashboardViewIntent
 import com.zizoh.ulesson.dashboard.presentation.dashboard.mvi.DashboardViewResult
 import com.zizoh.ulesson.dashboard.presentation.dashboard.mvi.DashboardViewState
+import com.zizoh.ulesson.dashboard.presentation.video.mvi.VideoViewIntent
+import com.zizoh.ulesson.dashboard.presentation.video.mvi.VideoViewResult
+import com.zizoh.ulesson.dashboard.presentation.video.mvi.VideoViewState
 import com.zizoh.ulesson.presentation.mvi.IntentProcessor
 import com.zizoh.ulesson.presentation.mvi.StateMachine
 import com.zizoh.ulesson.presentation.mvi.ViewStateReducer
@@ -31,3 +34,12 @@ typealias ChapterStateReducer =
 
 typealias ChapterStateMachine =
         @JvmSuppressWildcards StateMachine<ChapterViewIntent, ChapterViewState, ChapterViewResult>
+
+typealias VideoIntentProcessor =
+        @JvmSuppressWildcards IntentProcessor<VideoViewIntent, VideoViewResult>
+
+typealias VideoStateReducer =
+        @JvmSuppressWildcards ViewStateReducer<VideoViewState, VideoViewResult>
+
+typealias VideoStateMachine =
+        @JvmSuppressWildcards StateMachine<VideoViewIntent, VideoViewState, VideoViewResult>

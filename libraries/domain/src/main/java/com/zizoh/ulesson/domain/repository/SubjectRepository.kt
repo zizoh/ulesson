@@ -18,6 +18,8 @@ interface SubjectRepository {
 
     suspend fun saveWatchedTopic(lesson: Lesson)
 
+    fun getLesson(lessonId: Int): Flow<Lesson>
+
     fun getMostRecentWatchedTopics(): Flow<List<WatchedTopic>>
 
     fun getAllWatchedTopics(): Flow<List<WatchedTopic>>
