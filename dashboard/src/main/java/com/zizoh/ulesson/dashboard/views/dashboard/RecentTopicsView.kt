@@ -67,7 +67,7 @@ class RecentTopicsView @JvmOverloads constructor(context: Context, attributeSet:
                 with(binding) {
                     recentTopicsProgressBar.isVisible = false
                     rvRecentTopics.isVisible = false
-                    recentTopicsErrorState.isVisible = false
+                    recentTopicsErrorState.isVisible = true
                     recentTopicsErrorState.setTitle(context.getString(R.string.no_recently_watched_topics_title))
                     recentTopicsErrorState.setCaption(context.getString(R.string.no_recently_watched_topics_caption))
                     recentTopicsErrorState.isButtonVisible = false
