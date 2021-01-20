@@ -8,17 +8,12 @@ import androidx.room.PrimaryKey
  */
 
 @Entity(tableName = "watched_topics")
-data class WatchedTopicDatabaseModel(
-    @PrimaryKey
-    val id: Int,
-    val subjectId: Int,
-    val watchedDate: Long
-)
-
 data class WatchedTopicCacheModel(
+    @PrimaryKey
     val id: Int,
     val name: String,
     val icon: String,
     val subjectName: String,
+    val subjectId: Int,
     val watchedDate: Long
 )

@@ -9,7 +9,7 @@ class LessonEntityToWatchedTopicMapper @Inject constructor() {
 
     fun mapToWatchedTopic(lesson: Lesson): WatchedTopicEntity {
         return with(lesson) {
-            WatchedTopicEntity(id, name, icon, subjectId, DateUtils.getCurrentTime(), "")
+            WatchedTopicEntity(id, name, icon, subjectId, DateUtils.getCurrentTime(), subjectName)
         }
     }
 

@@ -61,7 +61,12 @@ class RecentTopicsView @JvmOverloads constructor(context: Context, attributeSet:
                     recentTopicsErrorState.isVisible = false
                     rvRecentTopics.isVisible = true
                 }
-                topicAdapter.submitList(state.lessons)
+                val lessons = if (state.lessons.size == 4) {
+                    state.lessons.subList(0, 3)
+                } else {
+                    state.lessons
+                }
+                topicAdapter.submitList(lessons)
             }
             RecentTopicsViewState.RecentTopicsEmpty -> {
                 with(binding) {
@@ -74,7 +79,6 @@ class RecentTopicsView @JvmOverloads constructor(context: Context, attributeSet:
                 }
             }
             RecentTopicsViewState.LoadingAllWatchedTopics -> {
-
             }
             is RecentTopicsViewState.AllWatchedTopicsLoaded -> {
                 with(binding) {
@@ -82,7 +86,8 @@ class RecentTopicsView @JvmOverloads constructor(context: Context, attributeSet:
                     recentTopicsErrorState.isVisible = false
                     rvRecentTopics.isVisible = true
                 }
-                topicAdapter.submitList(state.lessons)
+                val lessons = state.lessons
+                topicAdapter.submitList(lessons)
             }
         }
     }

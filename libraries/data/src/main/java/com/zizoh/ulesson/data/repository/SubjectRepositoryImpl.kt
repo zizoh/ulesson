@@ -43,6 +43,7 @@ class SubjectRepositoryImpl @Inject constructor(
                     chapters.forEach { chapter ->
                         val lessons = chapter.lessons.onEach { lesson ->
                             lesson.chapterName = chapter.name
+                            lesson.subjectName = subject.name
                         }
                         lessonCache.saveLessons(lessons)
                     }

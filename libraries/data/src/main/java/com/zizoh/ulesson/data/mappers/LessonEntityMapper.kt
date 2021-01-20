@@ -14,7 +14,7 @@ class LessonEntityMapper @Inject constructor(
 
     override fun mapFromEntity(entity: LessonEntity): Lesson {
         return with(entity) {
-            Lesson(id, name, icon, mediaUrl, subjectId, chapterId, chapterName)
+            Lesson(id, name, icon, mediaUrl, subjectId, subjectName, chapterId, chapterName)
         }
     }
 
