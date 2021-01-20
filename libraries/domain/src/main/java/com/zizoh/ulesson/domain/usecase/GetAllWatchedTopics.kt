@@ -22,6 +22,6 @@ class GetAllWatchedTopics @Inject constructor(
         get() = postExecutionThread.io
 
     override fun execute(params: Unit?): Flow<List<WatchedTopic>> {
-        return repository.getMostRecentWatchedTopics()
+        return repository.getAllWatchedTopics()
     }
 }

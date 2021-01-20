@@ -2,11 +2,10 @@ package com.zizoh.ulesson.dashboard.presentation.dashboard.mvi
 
 import com.zizoh.ulesson.core.ext.errorMessage
 import com.zizoh.ulesson.dashboard.presentation.DashboardStateReducer
-import com.zizoh.ulesson.dashboard.presentation.dashboard.mvi.DashboardViewResult.WatchedTopicsResult
 import com.zizoh.ulesson.dashboard.presentation.dashboard.mvi.DashboardViewResult.SubjectsResult
+import com.zizoh.ulesson.dashboard.presentation.dashboard.mvi.DashboardViewResult.WatchedTopicsResult
 import com.zizoh.ulesson.dashboard.presentation.dashboard.mvi.DashboardViewState.RecentTopicsViewState
 import com.zizoh.ulesson.dashboard.presentation.dashboard.mvi.DashboardViewState.SubjectsViewState
-import com.zizoh.ulesson.dashboard.presentation.mappers.LessonModelMapper
 import com.zizoh.ulesson.dashboard.presentation.mappers.SubjectModelMapper
 import com.zizoh.ulesson.dashboard.presentation.mappers.WatchedTopicModelMapper
 import javax.inject.Inject

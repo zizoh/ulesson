@@ -8,7 +8,7 @@ import com.zizoh.ulesson.cache.BuildConfig
 import com.zizoh.ulesson.cache.models.ChapterCacheModel
 import com.zizoh.ulesson.cache.models.LessonCacheModel
 import com.zizoh.ulesson.cache.models.SubjectCacheModel
-import com.zizoh.ulesson.cache.models.WatchedTopicDatabaseModel
+import com.zizoh.ulesson.cache.models.WatchedTopicCacheModel
 import com.zizoh.ulesson.cache.room.dao.ChapterDao
 import com.zizoh.ulesson.cache.room.dao.LessonDao
 import com.zizoh.ulesson.cache.room.dao.SubjectDao
@@ -23,7 +23,7 @@ import com.zizoh.ulesson.cache.room.dao.WatchedTopicDao
         ChapterCacheModel::class,
         LessonCacheModel::class,
         SubjectCacheModel::class,
-        WatchedTopicDatabaseModel::class
+        WatchedTopicCacheModel::class
     ],
     version = BuildConfig.databaseVersion,
     exportSchema = false

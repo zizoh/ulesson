@@ -13,7 +13,9 @@ import com.zizoh.ulesson.domain.models.Subject
 import com.zizoh.ulesson.domain.models.WatchedTopic
 import com.zizoh.ulesson.domain.repository.SubjectRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class SubjectRepositoryImpl @Inject constructor(
@@ -43,13 +45,15 @@ class SubjectRepositoryImpl @Inject constructor(
                     chapters.forEach { chapter ->
                         val lessons = chapter.lessons.onEach { lesson ->
                             lesson.chapterName = chapter.name
+                            lesson.subjectName = subject.name
                         }
                         lessonCache.saveLessons(lessons)
                     }
                 }
             }
-            val subjectsCache = subjectCache.getSubjects()
-            emit(subjectEntityMapper.mapFromEntityList(subjectsCache))
+            emitAll(subjectCache.getSubjects().map {
+                subjectEntityMapper.mapFromEntityList(it)
+            })
         }
     }
 
@@ -75,17 +79,14 @@ class SubjectRepositoryImpl @Inject constructor(
     }
 
     override fun getMostRecentWatchedTopics(): Flow<List<WatchedTopic>> {
-        return flow {
-            val watchedTopics: List<WatchedTopicEntity> =
-                watchedTopicCache.getMostRecentWatchedTopics()
-            emit(watchedTopicEntityMapper.mapFromEntityList(watchedTopics))
+        return watchedTopicCache.getMostRecentWatchedTopics().map {
+            watchedTopicEntityMapper.mapFromEntityList(it)
         }
     }
 
     override fun getAllWatchedTopics(): Flow<List<WatchedTopic>> {
-        return flow {
-            val watchedTopics: List<WatchedTopicEntity> = watchedTopicCache.getAllWatchedTopics()
-            emit(watchedTopicEntityMapper.mapFromEntityList(watchedTopics))
+        return watchedTopicCache.getAllWatchedTopics().map {
+            watchedTopicEntityMapper.mapFromEntityList(it)
         }
     }
 }

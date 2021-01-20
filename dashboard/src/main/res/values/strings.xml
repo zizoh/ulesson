@@ -5,6 +5,7 @@
     <string name="cont_desc_lesson_icon">Lesson image</string>
     <string name="cont_desc_play_button">Play button</string>
     <string name="view_all">View all</string>
+    <string name="see_less">See less</string>
     <string name="cont_desc_error_icon">Error image</string>
     <string name="retry">Retry</string>
     <string name="no_subjects_title">No Subjects</string>

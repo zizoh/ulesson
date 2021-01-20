@@ -10,6 +10,7 @@ data class LessonEntity(
     val icon: String,
     val mediaUrl: String,
     val subjectId: Int,
+    var subjectName: String,
     val chapterId: Int,
     var chapterName: String
 )

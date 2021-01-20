@@ -3,6 +3,7 @@ package com.zizoh.ulesson.dashboard.presentation.dashboard.mvi
 import com.zizoh.ulesson.dashboard.presentation.DashboardIntentProcessor
 import com.zizoh.ulesson.dashboard.presentation.dashboard.mvi.DashboardViewResult.SubjectsResult
 import com.zizoh.ulesson.dashboard.presentation.dashboard.mvi.DashboardViewResult.WatchedTopicsResult
+import com.zizoh.ulesson.domain.models.WatchedTopic
 import com.zizoh.ulesson.domain.usecase.GetAllWatchedTopics
 import com.zizoh.ulesson.domain.usecase.GetMostRecentWatchedTopics
 import com.zizoh.ulesson.domain.usecase.GetSubjects
@@ -24,7 +25,7 @@ class DashboardViewIntentProcessor @Inject constructor(
             LoadData -> getData()
             SubjectViewIntent.LoadSubjects -> loadSubjects()
             RecentTopicsViewIntent.LoadMostRecentTopics -> loadMostRecentWatchedTopics()
-            RecentTopicsViewIntent.LoadAllRecentTopics -> TODO()
+            RecentTopicsViewIntent.LoadAllRecentTopics -> loadAllWatchedTopics()
         }
     }
 
@@ -58,6 +59,17 @@ class DashboardViewIntentProcessor @Inject constructor(
                 }
             }.onStart {
                 emit(WatchedTopicsResult.LoadingMostRecentWatchedTopics)
+            }.catch { error ->
+                error.printStackTrace()
+            }
+    }
+
+    private fun loadAllWatchedTopics(): Flow<DashboardViewResult> {
+        return getAllWatchedTopics()
+            .map<List<WatchedTopic>, DashboardViewResult> { watchedTopics: List<WatchedTopic> ->
+                WatchedTopicsResult.AllWatchedTopicsLoaded(watchedTopics)
+            }.onStart {
+                emit(WatchedTopicsResult.LoadingAllWatchedTopics)
             }.catch { error ->
                 error.printStackTrace()
             }
